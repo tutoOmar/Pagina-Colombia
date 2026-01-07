@@ -1,0 +1,98 @@
+<header class="bg-white shadow-sm sticky top-0 z-50 w-full header-top">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <div class="shrink-0 flex items-center gap-3 cursor-pointer" routerLink="/">
+        <div class="flex">
+          <span class="font-bold text-white text-3xl  [text-shadow:1px_1px_0_#000,-1px_1px_0_#000,1px_-1px_0_#000,-1px_-1px_0_#000]">Colombia</span>
+          <span class="font-sans  italic text-xl text-white mt-2 ml-4  [text-shadow:1px_1px_0_#000,-1px_1px_0_#000,1px_-1px_0_#000,-1px_-1px_0_#000]">País sin igual</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex space-x-8 mt-4">
+        <a routerLink="/" 
+           routerLinkActive="text-blue-700 font-bold border-b-2 border-red-600" 
+           [routerLinkActiveOptions]="{exact: true}"
+           class="text-white hover:text-blue-800 px-1 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
+           Inicio
+        </a>
+        <a routerLink="/departamentos" 
+           routerLinkActive="text-blue-700 font-bold border-b-2 border-red-600"
+           class="text-white hover:text-blue-800 px-1 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
+           Departamentos
+        </a>
+        <a routerLink="/ciudades" 
+           routerLinkActive="text-blue-700 font-bold border-b-2 border-red-600"
+           class="text-white hover:text-blue-800 px-1 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
+           Ciudades
+        </a>
+        <a routerLink="/turismo" 
+           routerLinkActive="text-blue-700 font-bold border-b-2 border-red-600"
+           class="text-white hover:text-blue-800 px-1 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
+           Turismo
+        </a>
+        <a routerLink="/naturaleza" 
+           routerLinkActive="text-blue-700 font-bold border-b-2 border-red-600"
+           class="text-white hover:text-blue-800 px-1 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
+           Naturaleza
+        </a>
+      </nav>
+
+      <div class="flex items-center md:hidden">
+        <button (click)="toggleMenu()" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+          <span class="sr-only">Abrir menú</span>
+          
+          @if (!isMenuOpen) {
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          }
+          
+          @if (isMenuOpen) {
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (isMenuOpen) {
+    <div class="md:hidden bg-gray-50 border-t border-gray-200">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a routerLink="/" (click)="closeMenu()" 
+           routerLinkActive="bg-blue-50 text-blue-700 font-bold" 
+           [routerLinkActiveOptions]="{exact: true}"
+           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-800 hover:bg-gray-100">
+           Inicio
+        </a>
+        <a routerLink="/departamentos" (click)="closeMenu()"
+           routerLinkActive="bg-blue-50 text-blue-700 font-bold"
+           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-800 hover:bg-gray-100">
+           Departamentos
+        </a>
+        <a routerLink="/ciudades" (click)="closeMenu()"
+           routerLinkActive="bg-blue-50 text-blue-700 font-bold"
+           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-800 hover:bg-gray-100">
+           Ciudades
+        </a>
+        <a routerLink="/turismo" (click)="closeMenu()"
+           routerLinkActive="bg-blue-50 text-blue-700 font-bold"
+           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-800 hover:bg-gray-100">
+           Turismo
+        </a>
+        <a routerLink="/naturaleza" (click)="closeMenu()"
+           routerLinkActive="bg-blue-50 text-blue-700 font-bold"
+           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-800 hover:bg-gray-100">
+           Naturaleza
+        </a>
+      </div>
+    </div>
+  }
+
+  <div class="w-full h-1.5" 
+       style="background: linear-gradient(to bottom, #FCD116 0%, #FCD116 50%, #003893 50%, #003893 75%, #CE1126 75%, #CE1126 100%);">
+  </div>
+</header>
