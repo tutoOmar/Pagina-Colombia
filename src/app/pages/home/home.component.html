@@ -187,4 +187,15 @@
 
 </div>
 
-<div *ngIf="isLoading()">Cargando...</div>
+<div *ngIf="isLoading()" 
+     class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm transition-all duration-300">
+  
+  <div class="relative flex justify-center items-center">
+    <div class="absolute animate-ping w-16 h-16 rounded-full bg-emerald-100 opacity-75"></div>
+    
+    <div class="w-12 h-12 border-4 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+  </div>
+
+  <span class="mt-4 text-slate-600 font-medium animate-pulse">
+    Cargando datos de colombia...
+  </span> 
