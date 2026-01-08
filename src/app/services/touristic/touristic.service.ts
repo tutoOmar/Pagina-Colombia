@@ -8,7 +8,7 @@ import { TouristAttractionMapper } from '../../mappers/tourisitc-attraction.mapp
 @Injectable({
   providedIn: 'root'
 })
-export class TouristicService {
+export class  TouristicService {
 
   private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/TouristicAttraction`;
@@ -38,5 +38,16 @@ export class TouristicService {
         this.loadingState.set(false);
       })
     );
+  }
+  /**
+   * Obtiene un lugar turistico por su ID
+   * @param id 
+   * @returns 
+   */
+  getTouristicAttractionById(id:string):Observable<TouristAttraction | null>{ 
+    return this.http.get<TouristAttractionApiResponse>(`${this.apiUrl}/${id}`)
+      .pipe(
+        map((response) => TouristAttractionMapper.toDomain([response])[0])
+      );
   }
 }
