@@ -1,1 +1,190 @@
-<p>home works!</p>
+
+<div *ngIf="!isLoading()">
+  <section id="hero" class="relative w-full min-h-[90vh] flex items-center justify-center bg-linear-to-b from-[#E0F2F6] to-[#F0F9FB] overflow-hidden">
+    
+    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4"></div>
+
+    <div class="container mx-auto px-6 py-12 lg:py-0 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div class="mb-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 order-2 lg:order-1">
+
+          <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-slate-800 leading-tight">
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500">Colombia</span>,
+            un país lleno de magia, diversidad y encanto.
+          </h1>
+          
+          <p class="text-lg text-slate-600 max-w-lg">
+            Descubre la tierra de la sabrosura, donde la naturaleza y la cultura se encuentran.
+          </p>
+
+          <button 
+            (click)="scrollToDetails()"
+            class="group relative inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg shadow-slate-900/20 hover:bg-slate-800 hover:scale-105 transition-all duration-300">
+            Conocer más
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-y-1 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="relative flex justify-center order-1 lg:order-2">
+          <div class="absolute inset-0 bg-linear-to-tr from-emerald-400/20 to-blue-400/20 rounded-full blur-[60px] scale-90"></div>
+          
+          <img 
+            src="images/colombia_image_generated.png" 
+            alt="Mapa 3D de Colombia con naturaleza"
+            width="600" 
+            height="600" 
+            priority
+            class="relative w-full max-w-[320px] md:max-w-112.5 lg:max-w-full drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500 ease-in-out object-contain"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="details" class="relative w-full py-16 md:py-24 bg-white overflow-hidden">
+      <div class="absolute top-0 left-0 w-48 h-full opacity-[0.03] pointer-events-none select-none">
+          <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="precolumbian-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="currentColor" class="text-slate-900"/>
+              <rect x="15" y="15" width="10" height="10" fill="white"/>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#precolumbian-pattern)"/>
+          </svg>
+      </div>
+      
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl -z-10 translate-y-1/2 translate-x-1/2"></div>
+
+      <div class="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          
+          <div class="max-w-4xl mx-auto">
+          
+          <div class="flex justify-center mb-8">
+              <svg class="w-8 h-8 text-amber-500/80" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16.5L5.5 21L8 13.5L2 9H9.5L12 2Z" /> 
+              </svg>
+          </div>
+
+          <p class="text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed md:leading-loose font-light text-justify">
+              <span class="float-left text-6xl md:text-7xl font-bold text-amber-600 mr-3 -mt-1.5 font-serif leading-none">
+              C
+              </span>
+              {{ data()?.description?.substring(1) }}
+          </p>
+
+          <div class="w-24 h-1 bg-linear-to-r from-transparent via-amber-400 to-transparent mx-auto mt-12 opacity-50"></div>
+
+          </div>
+      </div>
+  </section>
+
+  <section id="information" class="py-16 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-6 md:px-12">
+      
+      <div class="mb-10 text-center md:text-left">
+        <h2 class="text-2xl font-bold text-slate-800">Datos Generales</h2>
+        <p class="text-slate-500">Cifras clave sobre el territorio nacional.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <app-card-presentation
+          label="Superficie"
+          [value]="data() ? data()!.surface.toLocaleString() : 'Cargando...'"
+          suffix="km²"
+          [iconPath]="icons['map']"
+          class="bg-white"
+        ></app-card-presentation>
+
+        <app-card-presentation
+          label="Población"
+          [value]="data() ? data()!.population.toLocaleString() : 'Cargando...'"
+          [iconPath]="icons['users']" 
+          class="bg-white"
+        ></app-card-presentation>
+
+        <app-card-presentation
+          label="Idiomas hablados"
+          [value]="data() ? translateLanguages(data()!.languages) : 'Cargando...'"
+          variant="text-list"
+          [iconPath]="icons['language']"
+          class="bg-white"
+        ></app-card-presentation>
+      </div>
+    </div>
+  </section>
+
+  <section id="touristic" class="relative w-full py-20 overflow-hidden bg-linear-to-b from-[#E0F2F6] to-[#F0F9FB]">
+  
+    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      
+      <div class="flex flex-col items-center gap-12">
+        
+        <div class="relative w-full max-w-4xl h-75 md:h-112.5 flex justify-center items-center mt-8">
+          
+          @if (selectedAttractions.length >= 3) {
+            
+            <div class="absolute z-10 transform -rotate-6 -translate-x-16 md:-translate-x-32 hover:-translate-y-4 hover:z-50 hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer">            <img 
+                [src]="selectedAttractions[0].images[0]" 
+                (error)="handleImageError($event)"
+                [alt]="selectedAttractions[0].name" 
+                class="w-40 h-56 md:w-64 md:h-80 object-cover rounded-2xl shadow-xl border-4 border-white opacity-90 hover:opacity-100"
+              />  
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                {{ selectedAttractions[0].name }}
+              </div>
+            </div>
+
+            <div class="absolute z-10 transform rotate-6 translate-x-16 md:translate-x-32 hover:-translate-y-4 hover:z-50 hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer">
+              <img 
+                [src]="selectedAttractions[1].images[0]" 
+                (error)="handleImageError($event)"
+                [alt]="selectedAttractions[1].name" 
+                class="w-40 h-56 md:w-64 md:h-80 object-cover rounded-2xl shadow-xl border-4 border-white opacity-90 hover:opacity-100"
+              />
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                {{ selectedAttractions[1].name }}
+              </div>
+            </div>
+
+            <div class="absolute z-20 transform hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer">
+              <img 
+                [src]="selectedAttractions[2].images[0]" 
+                (error)="handleImageError($event)"
+                [alt]="selectedAttractions[2].name" 
+                class="w-48 h-64 md:w-72 md:h-96 object-cover rounded-2xl shadow-2xl border-4 border-white"
+              />
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                {{ selectedAttractions[2].name }}
+              </div>
+              </div>
+          }
+        </div>
+        <div class="text-center max-w-2xl space-y-8 relative z-30 mt-4">
+          <h2 class="text-2xl md:text-4xl font-bold text-slate-800 leading-tight">
+            Colombia es un lugar lleno de lugares por visitar y de los cuales 
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500">
+              te vas a sorprender
+            </span>
+          </h2>
+          <button 
+            routerLink="/touristic-attractions"
+            class="group relative inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg shadow-slate-900/20 hover:bg-slate-800 hover:scale-105 transition-all duration-300">
+            Conoce los lugares turísticos
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div *ngIf="isLoading()">Cargando...</div>

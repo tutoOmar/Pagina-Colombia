@@ -1,0 +1,1 @@
+export type CardVariant = 'data' | 'text' | 'text-list';
