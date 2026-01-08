@@ -18,6 +18,14 @@
             path: 'touristic-attractions/:id', 
             loadComponent: () => import('./pages/touristic-attractions/touristic-attraction/touristic-attraction.component')
         },
+                {
+            path: 'cities',
+            loadComponent: () => import('./pages/cities/cities.component')
+        },
+        {
+            path: 'cities/:id', 
+            loadComponent: () => import('./pages/cities/city/city.component')
+        },
         {
             path: '**',
             redirectTo: 'home',
