@@ -11,6 +11,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home/home.component')
     },
     {
+        path: 'touristic-attractions',
+        loadComponent: () => import('./pages/touristic-attractions/touristic-attractions.component')
+    },
+    {
         path: '**',
         redirectTo: 'home',
         pathMatch: 'full'

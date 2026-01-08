@@ -32,4 +32,14 @@ export class ColombiaMapper {
   static formatSurface(surface: number): string {
     return `${surface.toLocaleString('es-CO')} km²`;
   }
+  /**
+   * Traduce los nombres de los idiomas al español
+   */
+  static translateLanguages(languages: string[]): string[] {
+    const translations: { [key: string]: string } ={
+      'Spanish': 'Español',
+      'English': 'Inglés',
+    }
+    return languages.map(lang => translations[lang] || lang);
+  }
 }
